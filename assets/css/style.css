@@ -3,5 +3,22 @@
   display: flex;
   justify-content: center;
   background-image: linear-gradient(to bottom right, blue, purple);
-  color: whitesmoke;
+  color: white;
+  padding: 1.5rem;
+}
+
+/* style the search form */
+#search-city {
+  display: flex;
+  flex-direction: column;
+}
+
+/* center the form text */
+.card-title {
+  text-align: center;
+}
+
+/* put space between the search input and 'search' button */
+#submit-search {
+  margin: 0.5rem 0;
 }

@@ -10,9 +10,24 @@
 </head>
 <body>
     <header class="hero">
+        <!-- title of application -->
         <h1 class="navbar" id="banner-title">Weather Dashboard</h1>
     </header>
     
+    <main id="main-content">
+    <div class="container row align-items-start">
+
+        <!-- search form -->
+        <div class="card col-6 col-sm-3" id="search-form">
+            <h3 class="card-title">Search For a City:</h3>
+            <form id="search-city" class="card-body">
+                <label class="form-label" for="city"></label>
+                <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+                <button type="submit" class="btn btn-primary" id="submit-search">Search</button>
+            </form>
+        </div>
+
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
