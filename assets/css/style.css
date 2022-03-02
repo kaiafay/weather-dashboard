@@ -23,3 +23,8 @@
 #submit-search {
   margin: 0.5rem 0;
 }
+
+/* put space between the search form and search history */
+#search-history {
+  margin-top: 1rem;
+}
