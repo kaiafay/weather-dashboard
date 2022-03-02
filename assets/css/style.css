@@ -1,0 +1,7 @@
+/* style hero */
+#banner-title {
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(to bottom right, blue, purple);
+  color: whitesmoke;
+}
