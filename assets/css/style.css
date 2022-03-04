@@ -33,3 +33,8 @@
 #search-form {
   margin: 0 1rem;
 }
+
+/* create space between current day weather and forecast */
+#forecast {
+  margin-top: 1rem;
+}
