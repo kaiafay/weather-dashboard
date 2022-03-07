@@ -38,3 +38,8 @@
 #forecast {
   margin-top: 1rem;
 }
+
+/* hide bullet points on li elements */
+li {
+  list-style: none;
+}
