@@ -22,27 +22,37 @@ var getCurrentDay = function(city) {
     // set variable for current day API URL
     var currentDayURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
     fetch(currentDayURL).then(function(response) {
-        // display data from API
-        return response.json();
-    }).then(function(data) {
-        console.log(data);
-        // create variables for data
-        var temp = data.main.temp;
-        // convert temp to fahrenheit
-        var tempF = Math.round((temp - 273.15) * 1.8 + 32);
-        var wind = data.wind.speed;
-        var humidity = data.main.humidity;
-        var icon = data.weather[0].icon;
-        var cityName = data.name;
-        var date = moment().format("MMMM Do YYYY");
-        // not working as expected
-        var tempEl = $("li").text("Temp:" + tempF + " F");
-        console.log(tempEl);
-        // append temp to current day container
-        currentDayContainer.append(tempEl);
-        currentDayContainer.append(date);
-    });
+        // check to see if response is successful
+        if(response.ok) {
+            return response.json().then(function(data) {
+            console.log(data);
+            // create variables for data
+            var temp = data.main.temp;
+            // convert temp to fahrenheit and format it
+            var tempF = "Temp: " + Math.round((temp - 273.15) * 1.8 + 32) + " °F";
+            var wind = data.wind.speed;
+            var humidity = data.main.humidity;
+            var cityName = data.name;
+            var date = moment().format("MMMM Do, YYYY");
 
+            // create icon image
+            var iconURL = "https://openweathermap.org/img/w/${weather.weather[0].icon}.png";
+            var weatherIcon = document.createElement("img");
+            weatherIcon.setAttribute("src", iconURL)
+            // append date to h3 element
+            $("#date").append(" " + date);
+            // append city name and icon to h4 element
+            $("#city-icon").append(cityName, weatherIcon);
+            // append temp to temp li element
+            $("#temp").append(tempF);
+        });
+        } else {
+            alert("Error:" + response.statusText)
+        }
+    })
+    .catch(function (error) {
+        alert("Unable to connect to OpenWeather!");
+    }); 
 };
 
 // add event listener to the search button
