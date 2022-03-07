@@ -23,7 +23,7 @@
       <div class="container-fluid">
         <div class="row">
           <!-- search form -->
-          <div class="card col-3" id="search-form">
+          <div class="search card col-3" id="search-form">
             <h3 class="card-title">Search For a City:</h3>
             <form id="search-city" class="card-body">
               <label class="form-label" for="city"></label>
@@ -42,8 +42,10 @@
 
           <!-- current day weather conditions placeholder -->
           <div class="card col-8" id="current-day">
-            <!-- empty h3 element for city name, date, and icon -->
-            <h3 id="city-date"></h3>
+            <!-- h3 for date -->
+            <h3 id="date">Current Day:</h3>
+            <!-- empty h4 element for city name and weather icon -->
+            <h4 id="city-icon"></h4>
             <ul>
               <!-- empty li elements for current day weather stats -->
               <li id="temp"></li>
@@ -56,21 +58,19 @@
 
         <!-- search history buttons placeholder -->
         <div class="row">
-          <div class="card col-6 col-sm-3" id="search-history">
-            <h3>this is a placeholder</h3>
+          <div class="history card col-6 col-sm-3" id="search-history">
             <!-- buttons will be created dynamically and placed here -->
           </div>
 
           <!-- 5 day forecast placeholder -->
           <div class="card col-8" id="forecast">
-            <!-- empty h3 element for 5-day forecast title -->
-            <h3 id="forecast-title"></h3>
+            <h3 id="forecast-title">5-Day Forecast:</h3>
             <!-- empty div elements for each day of the forecast -->
-            <div class="card" id="day-one"></div>
-            <div class="card" id="day-two"></div>
-            <div class="card" id="day-three"></div>
-            <div class="card" id="day-four"></div>
-            <div class="card" id="day-five"></div>
+            <div class="card forecast" id="day-one"></div>
+            <div class="card forecast" id="day-two"></div>
+            <div class="card forecast" id="day-three"></div>
+            <div class="card forecast" id="day-four"></div>
+            <div class="card forecast" id="day-five"></div>
           </div>
         </div>
       </div>

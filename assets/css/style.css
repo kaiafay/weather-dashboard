@@ -43,3 +43,9 @@
 li {
   list-style: none;
 }
+
+.search,
+.forecast,
+.history {
+  border: none;
+}
