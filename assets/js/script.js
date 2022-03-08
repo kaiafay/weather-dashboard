@@ -38,6 +38,8 @@ var getCurrentDay = function(city) {
 };
 
 var displayCurrentDay = function (data) {
+    currentDayContainer.innerHTML = '';
+    forecastContainer.innerHTML = '';
     // create variables for data
     var temp = data.main.temp;
     // convert temp to fahrenheit and format it
@@ -48,13 +50,14 @@ var displayCurrentDay = function (data) {
     var date = moment().format("MMMM Do, YYYY");
 
     // create icon image
-    var iconURL = "https://openweathermap.org/img/w/${weather.weather[0].icon}.png"; // url is not working
+    var iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
     var weatherIcon = document.createElement("img");
     weatherIcon.setAttribute("src", iconURL)
     // append date to h3 element
     $("#date").append(" " + date);
     // append city name and icon to h4 element
-    $("#city-icon").append(cityName + " " + weatherIcon);
+    $("#city-icon").append(cityName);
+    $("#city-icon").append(weatherIcon);
     // append temp to temp li element
     $("#temp").append(tempF);
     // append wind to wind li element
