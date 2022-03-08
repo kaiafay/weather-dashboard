@@ -29,7 +29,7 @@ var getCurrentDay = function(city) {
             displayCurrentDay(data);
         });
         } else {
-            alert("Error:" + response.statusText)
+            alert("Error: " + response.statusText)
         }
     })
     .catch(function (error) {
@@ -38,8 +38,6 @@ var getCurrentDay = function(city) {
 };
 
 var displayCurrentDay = function (data) {
-    currentDayContainer.innerHTML = '';
-    forecastContainer.innerHTML = '';
     // create variables for data
     var temp = data.main.temp;
     // convert temp to fahrenheit and format it
@@ -53,6 +51,16 @@ var displayCurrentDay = function (data) {
     var iconURL = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
     var weatherIcon = document.createElement("img");
     weatherIcon.setAttribute("src", iconURL)
+
+    // get lat and lon for UVI
+    var latlonURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&appid=924c79f0f636f17fd8929bb3a3510184";
+    console.log(latlonURL);
+    fetch(latlonURL).then(function(response) {
+        return response.json().then(function(data) {
+            $("#uv-index").append("UV Index: " + data.current.uvi);
+        });
+    });
+
     // append date to h3 element
     $("#date").append(" " + date);
     // append city name and icon to h4 element
@@ -65,10 +73,11 @@ var displayCurrentDay = function (data) {
     // append humidity to humidity li element
     $("#humidity").append("Humidity: " + humidity + "%");
 };
+
 // add event listener to the search button
 searchBtn.addEventListener('click', function(event) {
     event.preventDefault();
 
     // call the function to get current day weather stats
     getCurrentDay();
-})
+});
