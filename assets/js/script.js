@@ -4,6 +4,7 @@ var searchBtn = document.getElementById("submit-search");
 var currentDayContainer = document.getElementById("current-day");
 var searchHistoryContainer = document.getElementById("search-history");
 var forecastContainer = document.getElementById("forecast");
+var uvi = document.getElementById("uv-index")
 
 // global variables
 var apiURL = 'http://api.openweathermap.org/'; 
@@ -57,7 +58,19 @@ var displayCurrentDay = function (data) {
     console.log(latlonURL);
     fetch(latlonURL).then(function(response) {
         return response.json().then(function(data) {
-            $("#uv-index").append("UV Index: " + data.current.uvi);
+            uvi.append("UV Index: " + data.current.uvi);
+              
+    // style UVI
+    if (data.current.uvi < 3) {
+        uvi.classList.add("btn-success");
+    } else if (data.current.uvi < 7) {
+        uvi.classList.remove("btn-success");
+        uvi.classList.add("btn-warning");
+    } else if (data.current.uvi >= 7) {
+        uvi.classList.remove("btn-warning");
+        uvi.classList.remove("btn-success");
+        uvi.classList.add("btn-danger");
+    };
         });
     });
 
