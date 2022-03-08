@@ -26,25 +26,7 @@ var getCurrentDay = function(city) {
         if(response.ok) {
             return response.json().then(function(data) {
             console.log(data);
-            // create variables for data
-            var temp = data.main.temp;
-            // convert temp to fahrenheit and format it
-            var tempF = "Temp: " + Math.round((temp - 273.15) * 1.8 + 32) + " °F";
-            var wind = data.wind.speed;
-            var humidity = data.main.humidity;
-            var cityName = data.name;
-            var date = moment().format("MMMM Do, YYYY");
-
-            // create icon image
-            var iconURL = "https://openweathermap.org/img/w/${weather.weather[0].icon}.png";
-            var weatherIcon = document.createElement("img");
-            weatherIcon.setAttribute("src", iconURL)
-            // append date to h3 element
-            $("#date").append(" " + date);
-            // append city name and icon to h4 element
-            $("#city-icon").append(cityName, weatherIcon);
-            // append temp to temp li element
-            $("#temp").append(tempF);
+            displayCurrentDay(data);
         });
         } else {
             alert("Error:" + response.statusText)
@@ -55,6 +37,31 @@ var getCurrentDay = function(city) {
     }); 
 };
 
+var displayCurrentDay = function (data) {
+    // create variables for data
+    var temp = data.main.temp;
+    // convert temp to fahrenheit and format it
+    var tempF = "Temp: " + Math.round((temp - 273.15) * 1.8 + 32) + " °F";
+    var wind = data.wind.speed;
+    var humidity = data.main.humidity;
+    var cityName = data.name;
+    var date = moment().format("MMMM Do, YYYY");
+
+    // create icon image
+    var iconURL = "https://openweathermap.org/img/w/${weather.weather[0].icon}.png"; // url is not working
+    var weatherIcon = document.createElement("img");
+    weatherIcon.setAttribute("src", iconURL)
+    // append date to h3 element
+    $("#date").append(" " + date);
+    // append city name and icon to h4 element
+    $("#city-icon").append(cityName + " " + weatherIcon);
+    // append temp to temp li element
+    $("#temp").append(tempF);
+    // append wind to wind li element
+    $("#wind").append("Wind: " + wind + " MPH");
+    // append humidity to humidity li element
+    $("#humidity").append("Humidity: " + humidity + "%");
+};
 // add event listener to the search button
 searchBtn.addEventListener('click', function(event) {
     event.preventDefault();
