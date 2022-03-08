@@ -93,4 +93,5 @@ searchBtn.addEventListener('click', function(event) {
 
     // call the function to get current day weather stats
     getCurrentDay();
+    cityInput.value = '';
 });
