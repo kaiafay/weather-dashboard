@@ -83,6 +83,22 @@ var displayCurrentDay = function (data) {
     $("#humidity").append("Humidity: " + humidity + "%");
 };
 
+var getForecast = function(city) {
+    city = $("#city").val();
+
+    // set variable for forecast API URL
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&cnt=5&appid=" + apiKey; // api key not working?
+    fetch(forecastURL).then(function(response) {
+        if(response.ok) {
+            return response.json().then(function(data) {
+            console.log(data);
+        });
+        } else {
+            alert("Error: " + response.statusText)
+        }
+    });
+};
+
 // create a function that clears previous data one element at a time
 var clearData = function() {
     $("#date").innerHTML = "Current Day:";
