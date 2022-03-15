@@ -32,9 +32,6 @@ var getCurrentDay = function(city) {
         } else {
             alert("Error: " + response.statusText)
         }
-    })
-    .catch(function (error) {
-        alert("Unable to connect to OpenWeather!");
     }); 
 };
 
@@ -55,7 +52,6 @@ var displayCurrentDay = function (data) {
 
     // get lat and lon for UVI
     var latlonURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&appid=924c79f0f636f17fd8929bb3a3510184";
-    console.log(latlonURL);
     fetch(latlonURL).then(function(response) {
         return response.json().then(function(data) {
             uvi.append("UV Index: " + data.current.uvi);
@@ -83,8 +79,18 @@ var displayCurrentDay = function (data) {
     $("#temp").append(tempF);
     // append wind to wind li element
     $("#wind").append("Wind: " + wind + " MPH");
-    // append humidity to humidity li element
+    // // append humidity to humidity li element
     $("#humidity").append("Humidity: " + humidity + "%");
+};
+
+// create a function that clears previous data one element at a time
+var clearData = function() {
+    $("#date").innerHTML = "Current Day:";
+    $("#city-icon").emtpy();
+    $("#temp").value = '';
+    $("#wind").empty();
+    $("#humidity").empty();
+    $("#uv-index").empty();
 };
 
 // add event listener to the search button
@@ -93,5 +99,7 @@ searchBtn.addEventListener('click', function(event) {
 
     // call the function to get current day weather stats
     getCurrentDay();
+    getForecast();
+    // clear search input
     cityInput.value = '';
 });
