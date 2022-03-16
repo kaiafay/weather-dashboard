@@ -70,6 +70,7 @@ var displayCurrentDay = function (data) {
         });
     });
 
+    clearData();
     // append date to h3 element
     $("#date").append(" " + date);
     // append city name and icon to h4 element
@@ -101,9 +102,9 @@ var getForecast = function(city) {
 
 // create a function that clears previous data one element at a time
 var clearData = function() {
-    $("#date").innerHTML = "Current Day:";
-    $("#city-icon").emtpy();
-    $("#temp").value = '';
+    $("#date").text("Current Day:");
+    $("#city-icon").empty();
+    $("#temp").empty();
     $("#wind").empty();
     $("#humidity").empty();
     $("#uv-index").empty();
