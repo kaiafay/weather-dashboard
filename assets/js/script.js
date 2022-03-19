@@ -88,7 +88,7 @@ var getForecast = function(city) {
     city = $("#city").val();
 
     // set variable for forecast API URL
-    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + apiKey;
     fetch(forecastURL).then(function(response) {
         if(response.ok) {
             return response.json().then(function(data) {
@@ -125,6 +125,8 @@ var displayForecast = function(data) {
     var iconURL5 = `https://openweathermap.org/img/wn/${data.list[33].weather[0].icon}@2x.png`;
     var weatherIcon5 = document.createElement("img");
     weatherIcon5.setAttribute("src", iconURL5);
+
+    // set variables for temp
 };
 
 // create a function that clears previous data one element at a time
