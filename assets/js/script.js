@@ -108,6 +108,23 @@ var displayForecast = function(data) {
     var date3 = new moment().add(3, 'day').format("L");
     var date4 = new moment().add(4, 'day').format("L");
     var date5 = new moment().add(5, 'day').format("L");
+
+    // create icons for weather
+    var iconURL1 = `https://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`;
+    var weatherIcon1 = document.createElement("img");
+    weatherIcon1.setAttribute("src", iconURL1);
+    var iconURL2 = `https://openweathermap.org/img/wn/${data.list[9].weather[0].icon}@2x.png`;
+    var weatherIcon2 = document.createElement("img");
+    weatherIcon2.setAttribute("src", iconURL2);
+    var iconURL3 = `https://openweathermap.org/img/wn/${data.list[17].weather[0].icon}@2x.png`;
+    var weatherIcon3 = document.createElement("img");
+    weatherIcon3.setAttribute("src", iconURL3);
+    var iconURL4 = `https://openweathermap.org/img/wn/${data.list[25].weather[0].icon}@2x.png`;
+    var weatherIcon4 = document.createElement("img");
+    weatherIcon4.setAttribute("src", iconURL4);
+    var iconURL5 = `https://openweathermap.org/img/wn/${data.list[33].weather[0].icon}@2x.png`;
+    var weatherIcon5 = document.createElement("img");
+    weatherIcon5.setAttribute("src", iconURL5);
 };
 
 // create a function that clears previous data one element at a time
