@@ -88,7 +88,7 @@ var getForecast = function(city) {
     city = $("#city").val();
 
     // set variable for forecast API URL
-    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&cnt=5&appid=" + apiKey; // api key not working?
+    var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey;
     fetch(forecastURL).then(function(response) {
         if(response.ok) {
             return response.json().then(function(data) {
