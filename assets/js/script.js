@@ -127,6 +127,11 @@ var displayForecast = function(data) {
     weatherIcon5.setAttribute("src", iconURL5);
 
     // set variables for temp
+    var temp1 = data.list[0].main.temp;
+    var temp2 = data.list[9].main.temp;
+    var temp3 = data.list[17].main.temp;
+    var temp4 = data.list[25].main.temp;
+    var temp5 = data.list[33].main.temp;
 };
 
 // create a function that clears previous data one element at a time
