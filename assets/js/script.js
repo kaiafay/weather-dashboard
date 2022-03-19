@@ -35,7 +35,7 @@ var getCurrentDay = function(city) {
     }); 
 };
 
-var displayCurrentDay = function (data) {
+var displayCurrentDay = function(data) {
     // create variables for data
     var temp = data.main.temp;
     // convert temp to fahrenheit and format it
@@ -93,6 +93,7 @@ var getForecast = function(city) {
         if(response.ok) {
             return response.json().then(function(data) {
             console.log(data);
+            displayForecast(data);
         });
         } else {
             alert("Error: " + response.statusText)
@@ -101,7 +102,12 @@ var getForecast = function(city) {
 };
 
 var displayForecast = function(data) {
-
+    // set variables for dates
+    var date1 = new moment().add(1, 'day').format("L");
+    var date2 = new moment().add(2, 'day').format("L");
+    var date3 = new moment().add(3, 'day').format("L");
+    var date4 = new moment().add(4, 'day').format("L");
+    var date5 = new moment().add(5, 'day').format("L");
 };
 
 // create a function that clears previous data one element at a time
