@@ -132,6 +132,16 @@ var displayForecast = function(data) {
     var temp3 = data.list[17].main.temp;
     var temp4 = data.list[25].main.temp;
     var temp5 = data.list[33].main.temp;
+
+    // set variables for wind
+    var wind1 = data.list[0].wind.speed;
+    var wind2 = data.list[9].wind.speed;
+    var wind3 = data.list[17].wind.speed;
+    var wind4 = data.list[25].wind.speed;
+    var wind5 = data.list[33].wind.speed;
+    console.log(wind1, wind2, wind3, wind4, wind5);
+
+    // set variables for humidity
 };
 
 // create a function that clears previous data one element at a time
