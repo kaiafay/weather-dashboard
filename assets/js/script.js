@@ -100,6 +100,10 @@ var getForecast = function(city) {
     });
 };
 
+var displayForecast = function(data) {
+
+};
+
 // create a function that clears previous data one element at a time
 var clearData = function() {
     $("#date").text("Current Day:");
