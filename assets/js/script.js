@@ -192,6 +192,7 @@ var clearData = function() {
     $("#wind").empty();
     $("#humidity").empty();
     $("#uv-index").empty();
+    $(".forecast").empty();
 };
 
 // add event listener to the search button
