@@ -154,6 +154,13 @@ var displayForecast = function(data) {
     $("#day-one").append($("<p>").html("Wind: " + wind1 + " MPH"));
     $("#day-one").append($("<p>").html("Humidity: " + humidity1 + "%"));
 
+    // append day two info to div
+    $("#day-two").append($("<h5>").html(date2));
+    $("#day-two").append(weatherIcon2);
+    $("#day-two").append($("<p>").html("Temp: " + temp2 + "  °F"));
+    $("#day-two").append($("<p>").html("Wind: " + wind2 + " MPH"));
+    $("#day-two").append($("<p>").html("Humidity: " + humidity2 + "%"));
+
 };
 
 // create a function that clears previous data one element at a time
