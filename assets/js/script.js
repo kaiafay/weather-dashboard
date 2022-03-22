@@ -146,6 +146,14 @@ var displayForecast = function(data) {
     var humidity3 = data.list[17].main.humidity;
     var humidity4 = data.list[25].main.humidity;
     var humidity5 = data.list[33].main.humidity;
+
+    // append day one info to div
+    $("#day-one").append($("<h5>").html(date1));
+    $("#day-one").append(weatherIcon1);
+    $("#day-one").append($("<p>").html("Temp: " + temp1 + "  °F"));
+    $("#day-one").append($("<p>").html("Wind: " + wind1 + " MPH"));
+    $("#day-one").append($("<p>").html("Humidity: " + humidity1 + "%"));
+
 };
 
 // create a function that clears previous data one element at a time
