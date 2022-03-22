@@ -49,3 +49,9 @@ li {
 .history {
   border: none;
 }
+
+/* set size for weather icons */
+img {
+  width: 4rem;
+  height: 4rem;
+}
