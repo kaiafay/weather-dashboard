@@ -60,3 +60,8 @@ img {
 #forecast {
   flex-direction: row;
 }
+
+/* give forecast title a margin */
+#forecast-title {
+  margin-right: 1rem;
+}
