@@ -55,3 +55,8 @@ img {
   width: 4rem;
   height: 4rem;
 }
+
+/* style forecast cards next to each other */
+#forecast {
+  flex-direction: row;
+}
