@@ -10,11 +10,27 @@ var uvi = document.getElementById("uv-index")
 var apiURL = 'http://api.openweathermap.org/'; 
 var apiKey = '924c79f0f636f17fd8929bb3a3510184';
 var searchHistory = [];
+var previousSearch = JSON.parse(localStorage.getItem("searched"));
+console.log(previousSearch);
+
+if(previousSearch) {
+    searchHistory = previousSearch;
+};
 
 // display the search history on the page
 var displayHistory = function() {
-    searchHistoryContainer.innerHTML = '';
+    var ul = $("<ul>");
+    searchHistory.forEach(function(searchItem) {
+        console.log(searchItem);
+       var city = $("<li>").text(searchItem);
+    //    add a class to li's
+       ul.append(city);
+    })
+    // add event listener to class 
+    $("#search-history").append(ul);
 };
+
+displayHistory();
 
 var getCurrentDay = function(city) {
     // set city variable to city input value
@@ -198,6 +214,17 @@ var clearData = function() {
 // add event listener to the search button
 searchBtn.addEventListener('click', function(event) {
     event.preventDefault();
+
+    // remove first element of the array if it exceeds five
+    if(searchHistory.length > 5) {
+        searchHistory.shift();
+    };
+    // save searched cities to the search history array
+    var search = cityInput.value;
+    searchHistory.push(search);
+    
+    // save array to local storage as a string
+    localStorage.setItem("searched", JSON.stringify(searchHistory));
 
     // call the function to get current day weather stats
     getCurrentDay();
