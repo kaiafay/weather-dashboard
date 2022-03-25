@@ -65,3 +65,8 @@ img {
 #forecast-title {
   margin-right: 1rem;
 }
+
+/* create spacing between search history buttons */
+.btn-secondary {
+  margin: 0.25rem 0;
+}

@@ -11,7 +11,6 @@ var apiURL = 'http://api.openweathermap.org/';
 var apiKey = '924c79f0f636f17fd8929bb3a3510184';
 var searchHistory = [];
 var previousSearch = JSON.parse(localStorage.getItem("searched"));
-console.log(previousSearch);
 
 if(previousSearch) {
     searchHistory = previousSearch;
@@ -19,23 +18,26 @@ if(previousSearch) {
 
 // display the search history on the page
 var displayHistory = function() {
-    var ul = $("<ul>");
-    searchHistory.forEach(function(searchItem) {
-        console.log(searchItem);
-       var city = $("<li>").text(searchItem);
-    //    add a class to li's
-       ul.append(city);
-    })
-    // add event listener to class 
-    $("#search-history").append(ul);
+    var div = $("<div>");
+    // for loop that creates buttons for each search history item
+    for (var i=0; i < searchHistory.length; i++) {
+        var row = $("<row>");
+        var btn = document.createElement("button");
+        btn.setAttribute("type", "button");
+        btn.setAttribute("class", "btn btn-secondary btn-lg btn-block col-12");
+        btn.setAttribute("data-search", searchHistory[i]);
+        btn.textContent = searchHistory[i];
+        row.append(btn)
+        div.append(row);
+    };
+
+    // display buttons on the html page
+    $("#search-history").append(div);
 };
 
 displayHistory();
 
 var getCurrentDay = function(city) {
-    // set city variable to city input value
-    city = $("#city").val();
-
     // set variable for current day API URL
     var currentDayURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
     fetch(currentDayURL).then(function(response) {
@@ -101,8 +103,6 @@ var displayCurrentDay = function(data) {
 };
 
 var getForecast = function(city) {
-    city = $("#city").val();
-
     // set variable for forecast API URL
     var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + apiKey;
     fetch(forecastURL).then(function(response) {
@@ -215,20 +215,27 @@ var clearData = function() {
 searchBtn.addEventListener('click', function(event) {
     event.preventDefault();
 
-    // remove first element of the array if it exceeds five
-    if(searchHistory.length > 5) {
-        searchHistory.shift();
-    };
     // save searched cities to the search history array
     var search = cityInput.value;
     searchHistory.push(search);
     
     // save array to local storage as a string
     localStorage.setItem("searched", JSON.stringify(searchHistory));
-
+    // create city variable for search 
+    var city = $("#city").val();
     // call the function to get current day weather stats
-    getCurrentDay();
-    getForecast();
+    getCurrentDay(city);
+    getForecast(city);
     // clear search input
     cityInput.value = '';
+});
+
+// add event listener to the search history buttons
+searchHistoryContainer.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var btn = event.target
+    var search = btn.getAttribute("data-search");
+    getCurrentDay(search);
+    getForecast(search);
 });
