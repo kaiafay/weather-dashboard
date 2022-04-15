@@ -71,6 +71,7 @@ var displayCurrentDay = function(data) {
     // get lat and lon for UVI
     var latlonURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + data.coord.lat + "&lon=" + data.coord.lon + "&appid=924c79f0f636f17fd8929bb3a3510184";
     fetch(latlonURL).then(function(response) {
+        console.log(response);
         return response.json().then(function(data) {
             uvi.append("UV Index: " + data.current.uvi);
               
@@ -209,6 +210,10 @@ var clearData = function() {
     $("#humidity").empty();
     $("#uv-index").empty();
     $(".forecast").empty();
+
+    uvi.classList.remove("btn-warning");
+    uvi.classList.remove("btn-success");
+    uvi.classList.remove("btn-danger");
 };
 
 // add event listener to the search button
