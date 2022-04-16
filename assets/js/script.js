@@ -224,20 +224,26 @@ searchBtn.addEventListener('click', function(event) {
     var search = cityInput.value;
     searchHistory.push(search);
     
+    // limit search history length to 5
+    if(searchHistory.length > 5) {
+        searchHistory.shift();
+    };
+
     // save array to local storage as a string
     localStorage.setItem("searched", JSON.stringify(searchHistory));
-    // create city variable for search 
-    var city = $("#city").val();
+    // empty search history container
+    $('#search-history').empty();
+    displayHistory();
+   
     // call the function to get current day weather stats
-    getCurrentDay(city);
-    getForecast(city);
+    getCurrentDay(search);
+    getForecast(search);
     // clear search input
     cityInput.value = '';
 });
 
 // add event listener to the search history buttons
 searchHistoryContainer.addEventListener('click', function(event) {
-    event.preventDefault();
 
     var btn = event.target
     var search = btn.getAttribute("data-search");
